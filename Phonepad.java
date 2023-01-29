@@ -10,7 +10,6 @@ class Phonepad {
 
     public Phonepad() {
         String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
         int index = 0;
 
         for (int i = 2; i <= 9; i++) {
@@ -18,7 +17,7 @@ class Phonepad {
                 dict.put(Integer.toString(i).repeat(j), alphabet.charAt(index));
                 index++;
 
-                if (i == 7 && j == 3) {
+                if ((i == 7 && j == 3) || i == 9 && j == 3) {
                     dict.put(Integer.toString(i).repeat(j + 1), alphabet.charAt(index));
                     index++;
                 }
@@ -26,8 +25,6 @@ class Phonepad {
         }
 
         assert (index == 25);
-
-        dict.put("9999", alphabet.charAt(index));
     }
 
     public Character getChar(String key) {
@@ -43,16 +40,16 @@ class Phonepad {
         return dict;
     }
 
+    public List<String> getInvalids() {
+        return invalids;
+    }
+
     public void printDict() {
         System.out.println("---------");
         for (Map.Entry<String, Character> entry : dict.entrySet()) {
             System.out.println(entry.getValue() + " : " + entry.getKey());
         }
         System.out.println("---------");
-    }
-
-    public List<String> getInvalids() {
-        return invalids;
     }
 
     public void printInvalids() {
